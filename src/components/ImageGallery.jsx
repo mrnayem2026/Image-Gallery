@@ -9,7 +9,7 @@ const ImageGallery = ({ images }) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
 
-
+  const deletImage = () =>toast("Image Deleted", { icon: "🗑️", duration: 1500 });
 
   //* The handleImageSelect function manages the selection and deselection of images based on their id.
   const handleImageSelect = (id) => {
@@ -23,6 +23,29 @@ const ImageGallery = ({ images }) => {
     }
   };
 
+
+
+
+//* The setFeatureImage function create for Reorder and Set Feature Image 
+
+  const setFeatureImage =(startIndex,endIndex)=>{
+    const updatedFeatureImage = [...imageSequence];
+    const [reorderFeatureImage] = updatedFeatureImage.splice(startIndex,1);
+    updatedFeatureImage.splice(endIndex,0,reorderFeatureImage);
+    setImageSequence(updatedFeatureImage)
+  }
+
+
+  //* The handleDeleteSelectedImage function create for Delet Selected Image 
+
+  const handleDeleteSelectedImage = () => {
+    setImageSequence(
+      imageSequence.filter((image) => !selectedImages.includes(image.id))
+    );
+    setSelectedImages([]);
+    deletImage();
+  };
+
   
   return (
     <>
@@ -30,6 +53,22 @@ const ImageGallery = ({ images }) => {
         <h1 className="font-sans text-3xl font-bold col-span-8">
           Image Gallery
         </h1>
+        <div>
+          {selectedImages.length !== 0 ? (
+            <div>
+              <h1 className="text-base font-medium md:text-xl font-sans md:font-semibold flex gap-2 items-center pb-4">
+                <BiSolidSelectMultiple className="text-sky-700"></BiSolidSelectMultiple>{" "}
+                Selected Image: {selectedImages.length}
+              </h1>
+              <button
+                onClick={handleDeleteSelectedImage}
+                className="btn btn-error w-full font-bold text-white"
+              >
+                Delete Image
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
       <hr className="container mx-auto" />
 
@@ -39,10 +78,10 @@ const ImageGallery = ({ images }) => {
             key={image.id}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
             whileHover={{ scale: 0.9 }}
             drag
-            dragConstraints={{ top: 0, left: 10, right: 0, bottom: 0 }}
+            
+            dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
             dragElastic={1}
             className={`relative ${
               image.id === imageSequence[0].id ? "col-span-2 row-span-2" : ""
@@ -51,7 +90,9 @@ const ImageGallery = ({ images }) => {
           >
             <img src={image.url} alt={image.alt} className="rounded-2xl" />
             <div
-              className={`absolute  bg-black bg-opacity-50 inset-0 flex translate-y-[100%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0`}
+              className={`absolute ${
+                selectedImages.includes(image.id) ? "translate-y-1 " : "  "
+              } bg-black bg-opacity-50 inset-0 flex translate-y-[100%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0`}
             >
               <input 
               type="checkbox" 
@@ -60,7 +101,9 @@ const ImageGallery = ({ images }) => {
               onChange={() => handleImageSelect(image.id)}
                />
 
-              <button className="absolute bottom-5 left-5 bg-gradient-to-r from-gray-900 to-gray-600  text-white p-2 text-sm font-bold rounded-lg">
+              <button
+              onClick={() => setFeatureImage(index, 0)}
+              className="absolute bottom-5 left-5 bg-gradient-to-r from-gray-900 to-gray-600  text-white p-2 text-sm font-bold rounded-lg">
                 Set as Feature
               </button>
             </div>
