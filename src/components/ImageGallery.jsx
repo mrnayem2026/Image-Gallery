@@ -91,7 +91,7 @@ const ImageGallery = ({ images }) => {
             <img src={image.url} alt={image.alt} className="rounded-2xl" />
             <div
               className={`absolute ${
-                selectedImages.includes(image.id) ? "translate-y-1 " : "  "
+                selectedImages.includes(image.id) ? "translate-y-1" : "  "
               } bg-black bg-opacity-50 inset-0 flex translate-y-[100%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0`}
             >
               <input 
@@ -110,7 +110,7 @@ const ImageGallery = ({ images }) => {
           </motion.div>
         ))}
         <Toaster />
-        <div className="w-[175px] h-[175px] md:w-[290px] md:h-[290px] border-gray-400 border-dashed rounded-2xl border-2 flex justify-center items-center cursor-pointer">
+        <div className="w-[175px] h-[175px] md:w-[372px] md:h-[372px] lg:w-[188px] lg:h-[188px] xl:w-[290px] xl:h-[290px] border-gray-400 border-dashed rounded-2xl border-2 flex justify-center items-center cursor-pointer">
           <div>
             <span className="flex justify-center">
               <BsFillImageFill className="w-10 h-10"></BsFillImageFill>
