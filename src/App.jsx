@@ -1,14 +1,15 @@
 import ImageGallery from "./components/ImageGallery"
 
 function App() {
+  
   const images = [
     {
       id:"01",
-      url: '/public/image-1.webp',
+      url: '/public/image15.jpg',
     },
     {
       id:"02",
-      url: '/public/image-2.webp',
+      url: '/public/image16.png',
     },
     {
       id:"03",
@@ -45,7 +46,7 @@ function App() {
     {
       id:"12",
       url: '/public/image-11.jpeg',
-    }
+    },
   ];
   return (
     <>
