@@ -91,7 +91,7 @@ const ImageGallery = ({ images }) => {
             <img src={image.url} alt={image.alt} className="rounded-2xl" />
             <div
               className={`absolute ${
-                selectedImages.includes(image.id) ? "translate-y-1" : "  "
+                selectedImages.includes(image.id) ? "translate-y-0" : "  "
               } bg-black bg-opacity-50 inset-0 flex translate-y-[100%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0`}
             >
               <input 
