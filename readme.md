@@ -5,7 +5,7 @@ Image Gallery website is built using ReactJS. The gallery features a main "Featu
 
 ## Live Link
 
-You can access the live version of the Image Gallery website [here](https://github.com/mrnayem2026/Image-Gallery.git).
+You can access the live version of the Image Gallery website [here](https://image-gallery-2026.netlify.app/).
 
 ## Screenshot
 
